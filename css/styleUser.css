@@ -1,0 +1,420 @@
+/*Globales*/
+html{
+    box-sizing: border-box;
+    min-height: 100%;
+    font-size: 62.5%;
+
+}
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+
+body{
+    /*font famuli PT SANS de 700 y 400*/
+    font-family: 'PT Sans', sans-serif;
+    min-height: 100%;
+    /*color de fondo 105 Raccoon Back*/
+    background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255,255,255,0.30) 0%, rgba(0,0,0,0.30) 100%);
+    background-blend-mode: screen;
+    
+    font-size: 1.6rem;
+}
+img{
+    max-width: 100%;
+}
+
+h1,h2,h3{
+    margin: 0;
+}
+
+h1{
+    font-size: 3.8rem;
+}
+
+h2{
+    font-size: 3.6rem;
+}
+
+h3{
+    font-size: 3.4rem;
+}
+
+h4{
+    font-size: 3.2rem;
+}
+/*Utildades*/
+.contenedor{
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.centrar-texto{
+    text-align: center;
+}
+.right-texto{
+    text-align: right;
+}
+
+.site-base{
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 3rem;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+.form-style input,
+.form-style select{
+    width: 65%;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-radius: 3rem;
+    padding: 1rem;
+    outline: none;
+    background-color: #e1e1e1;
+    border: none;
+}
+
+
+/*Header*/
+.site-header{
+    background-color: #098171;  /*COLOR DE FONFO EN HEADER  098171*/
+    padding: 2.5rem 0;
+}
+.site-header h1{
+    color: #fff;
+    font-size: 2rem;
+}
+.search{
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 1.5rem;
+}
+.lista-catalogo{
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 1.5rem;
+}
+.boton{
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 2.5rem;
+    
+}
+/*Seccion de iconos*/
+.iconos .user,
+.iconos .bag,
+.iconos .notifi{
+    color: #fff;
+    font-size: 3rem;
+}
+/*Navegacion header*/
+.barra{
+    background-color: rgb(255, 255, 255);
+    padding: 1.5rem;
+}
+.barra .nav{
+    display: flex;
+    justify-content: space-between;
+}
+.barra .nav a{
+    text-decoration: none;
+    color: #000;
+    font-size: 2rem;
+
+}
+
+/*Agregar Domicilio*/
+.site-domicilio{
+    margin: 3rem 0;
+}
+.campos-form{
+   text-align: center;
+   margin-top: 3rem;
+}
+
+.campos-form .campo i{
+    font-size: 2rem;
+    color: #10554b;
+}
+.campos-form .campo input{
+    width: 65%;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-radius: 3rem;
+    padding: 1rem;
+    outline: none;
+    background-color: #e1e1e1;
+    border: none;
+}
+
+.campos-form  button{
+    font-size: 1.8rem;
+}
+/*Agregar Tarjeta*/
+.tarjeta-campos{
+    text-align: center;
+}
+.img-tarjeta i{
+    font-size: 10rem;
+    margin: 3rem 0;
+    color: #10554b;
+}
+
+.tarjeta-campos button{
+    font-size: 1.8rem;
+}
+
+/*Productos a pagar*/
+.linea-producto .productos-pagar .img-cata{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.total-pagar .righ-campo button{
+    font-size: 2rem;
+    margin-top: 3rem;
+}
+
+.total-pagar .pago{
+    text-align: right;
+}
+
+/*Detalle Compra*/
+.linea-producto .detalle-compra{
+    border-bottom: 2px solid #e1e1e1;
+
+}
+
+
+/*Mis Datos*/
+.campos-form .separar-contenido label{ 
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+/*Mi bolsa*/
+.contenedor-mi-bolsa .linea-bolsa .img-cata{
+    margin: 2rem 0;
+}
+.contenedor-mi-bolsa .linea-bolsa .mi-bolsa{
+    border-bottom: 2px solid #e1e1e1;
+    margin-bottom: 2rem;
+
+}
+
+.linea-bolsa .total-pagar input{
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-radius: 3rem;
+    padding: 1rem;
+    outline: none;
+    background-color: #e1e1e1;
+    border: none;
+}
+
+.linea-bolsa .total-pagar button{
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+
+}
+
+/*Estilos menu bolsa*/
+.submenu-bolsa i,
+.submenu-notifi i{
+    cursor: pointer;
+}
+
+.submenu-bolsa,
+.submenu-notifi{
+    position: relative;
+}
+
+.submenu-bolsa .bolsa,
+.submenu-notifi .notificacion{
+    display: none;
+}
+
+.submenu-bolsa:hover .bolsa,
+.submenu-notifi:hover .notificacion{
+    display: block;
+    position: absolute;
+    right:0;
+
+    top:100%;
+    z-index: 1;
+    background-color: white;
+    padding: 2rem;
+    min-height: 40rem;
+    min-width: 30rem;
+
+}
+.submenu-notifi .notificacion thead,
+.submenu-bolsa .bolsa thead{
+    text-align: center;
+}
+.submenu-notifi .notificacion tbody tr,
+.submenu-bolsa .bolsa tbody tr{
+    text-align: center;
+    border-bottom: 2px solid #BCC5CE;
+}
+.submenu-bolsa .bolsa .boton-bolsa{
+    text-align: center;
+    margin-top: 3rem;
+}
+
+ .bolsa .boton-bolsa a{
+    font-size: 1.5rem;
+}
+
+/*Cuenta user*/
+.mi-cuenta .nombre-user{
+    background-color: #fff;
+    border-radius: 1rem;
+    
+}
+.mi-cuenta .nombre-user p{
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.mi-cuenta .nombre-user{
+    cursor: pointer;
+
+}
+
+.submenu-cuenta{
+    position: relative;
+}
+.submenu-cuenta .cuenta-user{
+    display: none;
+}
+.submenu-cuenta:hover .cuenta-user{
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 30rem;
+    min-width: 30rem;
+    text-align: left;
+    
+}
+
+
+mi-cuenta .nombre-user{
+    background-color: #fff;
+    border-radius: 1rem;
+    margin-left: 2rem;
+}
+.mi-cuenta .nombre-user p{
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: bold;
+
+}
+.mi-cuenta .nombre-user{
+    cursor: pointer;
+
+}
+
+/*Estilos a las propiedades de ceunta user*/
+
+.submenu-cuenta .cuenta-user ul{
+    border-bottom: 3px solid #c5c5c5;
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+.submenu-cuenta .cuenta-user  a{
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #1b8fd6;
+    margin-bottom: 2rem;
+}
+.submenu-cuenta .cuenta-user  i{
+    font-size: 2rem;
+    color: #098171;
+    margin: 1rem 0.5rem;
+}
+
+
+
+
+
+
+
+
+/*Footer*/
+.site-footer{
+    background-color: #10554b;
+  
+}
+.site-footer h3{
+    color: #0e033d;
+    margin: 2rem 0;
+    
+}
+
+.iconos-footer li{
+    list-style: none;
+}
+.iconos-footer ul a,
+.iconos-footer ul li{
+ color: #fff;
+ text-decoration: none;
+ font-size: 2rem;
+
+}
+.iconos-footer ul a:hover{
+    color:#93d32d;
+}
+.iconos-footer i{
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+.social-media{
+    background-color: #000;
+    color: #fff;
+    padding: 1.5rem 0;
+}
+.iconos-media{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.iconos-media p{
+    font-size: 2rem;
+    margin: 0;
+}
+@media (min-width: 768px) {
+    .iconos-media{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+}
+.nav-media a{
+    margin-right: 1rem;
+}
+.nav-media a:last-of-type{
+     margin-right: 0;
+}
+.nav-media i{
+    color: #fff;
+    font-size: 3rem;
+    margin-left: 1rem;
+}
