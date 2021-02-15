@@ -15,7 +15,14 @@
                                 </div>
                                 <div class="campo-contacto col-md-12">
                                     <i class="far fa-user"></i>
-                                    <input type="text" id="apellido-registrar" placeholder="Apellido" name="apellido">
+                                    <input type="text" id="ap-registrar" placeholder="Apellido Paterno" name="ap-registrar">
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="campo-contacto col-md-12">
+                                        <i class="far fa-user"></i>
+                                        <input type="text" id="am-registrar" placeholder="Apellido Materno" name="am-registrar">
                                 </div>
                             </div>
                           

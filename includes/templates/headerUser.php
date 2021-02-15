@@ -24,16 +24,16 @@
 
                 </div>
 
-                <div class="col-sm-3 col-md-2">
+                <!-- <div class="col-sm-3 col-md-2">
                     <select name="lista-catalogos" id="lista-catalogos" class="lista-catalogo">
                         <option value="dama">Dama</option>
                         <option value="caballero">Caballero</option>
                         <option value="nino">Niños</option>
                         <option value="catalogo">Catalogos</option>
                     </select>
-                </div>
+                </div> -->
 
-                <div class="col-sm-3 col-md-6">
+                <div class="col-sm-3 col-md-8">
 
                     <form action="#">
                         <input type="text" name="buscar" id="buscar" class="search"

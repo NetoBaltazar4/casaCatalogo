@@ -3,7 +3,8 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
 (function(){
 
      const nombreInput = document.querySelector('#nombre-registrar');
-     const apellidoInput = document.querySelector('#apellido-registrar');
+     const apInput = document.querySelector('#ap-registrar');
+     const amInput = document.querySelector('#am-registrar');
      const emailInput = document.querySelector('#email-registrar');
      const passwordInput = document.querySelector('#password-registrar');
      const passwordInputConfir = document.querySelector('#password-confirmar');
@@ -15,7 +16,8 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
 
           /////Validar los campos de cada uno de los inputs
           nombreInput.addEventListener('blur', validarCampos);
-          apellidoInput.addEventListener('blur', validarCampos);
+          apInput.addEventListener('blur', validarCampos);
+          amInput.addEventListener('blur', validarCampos);
           emailInput.addEventListener('blur', validarCampos);
           passwordInput.addEventListener('blur', validarCampos);
           passwordInputConfir.addEventListener('blur', validarCampos);
@@ -68,7 +70,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
 
      }
 
-     function validarCorreo(type,campo,long){
+     function validarCorreo(campo,long){
 
           let regexEmail =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
