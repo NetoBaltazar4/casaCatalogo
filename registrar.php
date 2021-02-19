@@ -7,7 +7,7 @@
                 <img src="Img/La casa del catalogo2.0.png" alt="Logo casa del catalogo" width="20%">
             </div>
             <div class="contacto">
-                    <form action="#" id="formulario" class="formulario-registrar">
+                    <form action="validarRegistro.php" id="formulario" class="formulario-registrar" method="post">
                             <div class="row justify-content-center">
                                 <div class="campo-contacto col-md-12">
                                     <i class="far fa-user"></i>
@@ -33,25 +33,26 @@
                                 </div>
                                 <div class="campo-contacto col-md-12">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" id="password-registrar" placeholder="password" name="password">
+                                    <input type="password" id="password-registrar" placeholder="Password" name="password">
                                 </div>
                             </div>
 
                             <div class="row justify-content-center">
                                 <div class="campo-contacto col-md-12">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" id="password-confirmar" placeholder="Confirmar password" name="password">
+                                    <input type="password" id="password-confirmar" placeholder="Confirmar password" name="password-confir">
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="boton-registrar">
-                                    <button type="submit" id="btn-registrar" class="btn btn-dark">Registrar</button>
+                                    <button type="submit" id="btn-registrar" class="btn btn-dark" name="submit" >Registrar</button>
                                 </div>
-                
                             </div>
+
+                                    
+                            
                     </form>
                 </div>
-
 
         </div>
     </section>
@@ -62,5 +63,6 @@
     <script src="js/js/registrar.js" type="module"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
 </body>
 </html>

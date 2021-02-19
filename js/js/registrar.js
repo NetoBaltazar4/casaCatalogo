@@ -23,8 +23,11 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
           passwordInputConfir.addEventListener('blur', validarCampos);
 
 
-          btnRegistrar.disabled = true;
+
+
+          btnRegistrar.disabled = false;
      });
+
 
 
 
@@ -35,7 +38,11 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
           const name = e.target.name;
           const campo = e.target.value;
 
+
+
           
+
+       
 
           if(type === 'text' ){
 
@@ -43,7 +50,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
           }
 
           if(type === 'email'){
-               validarCorreo(type,campo,long);
+               validarCorreo(campo,long);
           }
 
           if(type === 'password'){
@@ -61,12 +68,20 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
 
           }
 
-          if(tipo === 'text' && name === 'apellido'){
+          if(tipo === 'text' && name === 'ap-registrar'){
                if(!logintud>0){
-                    mostrarMensaje(`Ingresa tu ${name}`, 'error');
+                    mostrarMensaje(`Ingresa tu Apellido Paterno`, 'error');
                     return;
                }
           }
+
+          if(tipo === 'text' && name === 'am-registrar'){
+               if(!logintud>0){
+                    mostrarMensaje(`Ingresa tu Apellido Materno`, 'error');
+                    return;
+               }
+          }
+
 
      }
 
@@ -88,16 +103,16 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
 
      function validarPassword(campo,long){
 
-          let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+        //  let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-          if(campo === '' || !long>0){
-               mostrarMensaje('Favor de ingresar una contrasena','error');
-               return;
-          }
-          if(!regexPassword.test(campo)){
-               mostrarMensaje('Ingresar contrasenia correcta','error');
-               return;
-          }
+          // if(campo === '' || !long>0){
+          //      mostrarMensaje('Favor de ingresar una contraseña','error');
+          //      return;
+          // }
+          // if(!regexPassword.test(campo)){
+          //      mostrarMensaje('Ingresar una contraseña valida','error');
+          //      return;
+          // }
 
           /////Confimar contrasenia validar 
           
