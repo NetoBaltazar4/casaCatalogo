@@ -84,8 +84,15 @@
                                 <div class="col-md-12">
                                         <select name="marca" id="marca">
                                             <option disabled selected  value="">Selecciona una marca</option>
-                                            <option value="AND">Andrea</option>
-                                            <option value="DEB">Debendi</option>
+                                            <?php include ("includes/funciones/conexion.php");
+                                        $result = mysqli_query($conn, "SELECT DISTINCT marca FROM catalogo");
+                                        while($extraido= mysqli_fetch_array($result)){
+                                        
+                                        ?>
+                                        <option value="AND"><?php echo "".$extraido['marca'] ?></option>
+                                        <?php
+                                        }
+                                        ?>
                                         </select>
                                         <input type="text" placeholder="Ingresa el modelo" id="modelo">
                                 </div>
