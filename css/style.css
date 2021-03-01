@@ -328,6 +328,22 @@ h4{
     outline: none;
 }
 
+.contacto .campo-contacto .password-registrar,
+.contacto .campo-contacto .password-confirmar{
+    width: 80%;
+}
+
+/*Mostrar contrasenia*/
+.contacto .campo-contacto .mostrar-password{
+    cursor: pointer;
+}
+/*Mostrar confirmat contrarsenia*/
+.contacto .campo-contacto .mostrar-confirmar-password{
+    cursor: pointer;
+}
+
+
+
 .contacto .campo-textArea{
     display: flex;
     justify-content: center;  
