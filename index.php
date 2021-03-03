@@ -1,3 +1,60 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+       $(function(){
+           $("#lista-talla").change(function(){
+           
+            if(!$('#marcasel').val()){
+                alert("Selecciona una marca");
+            } 
+            else if(!$('#modelo').val()){
+                alert("Ingresa un modelo");
+            } else{
+
+               var tallares = $("#lista-talla option:selected").text();
+               var marcares = $("#marcasel option:selected").text();
+               var modelo = $("#modelo").val();
+              
+               $.ajax({
+                    type:"POST",
+                    url:"includes/funciones/datos.php",
+                    data: "talla="+tallares+"&marca="+marcares+"&modelo="+modelo,
+                    
+                    success:function(r){
+                        if(Object.entries(r).length==0){
+                            alert("Error al ingresar los datos");
+                        }
+                        $('#precio').html("$ "+r);
+                    }
+                });  
+
+            }   
+            
+           })
+
+           $("#marcasel").change(function(){
+            if(!$('#modelo').val()){
+                alert("Ingresa un modelo");
+            } else{
+                $('#lista-talla').removeAttr('disabled');
+            }
+           })
+           
+           $("#modelo").blur(function(){
+            
+    		if(!$('#modelo').val()){
+                alert("Ingresa un modelo");
+            } else if(!$('#marcasel').val()){
+                alert("Selecciona una marca");
+            } else{
+                
+                
+                $('#lista-talla').removeAttr('disabled');
+            }
+	       })
+       });
+    </script>
+    </head>
     <?php include_once 'includes/templates/header.php'; ?>
 
   <!--  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -153,7 +210,7 @@
                                         ?>
                                     </select>
 
-                                    <input type="text" placeholder="Ingresa el modelo" id="modelo">
+                                    <input type="text" placeholder="Ingresa el modelo" id="modelo" name="modelo">
 
 
                                 </div>
@@ -162,7 +219,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="talla" class="talla">Selecciona la talla</label>
-                                    <select name="lista-talla" id="lista-talla">
+                                    <select name="lista-talla" id="lista-talla" disabled>
                                       <?php include ("includes/funciones/conexion.php");
                                         $result = mysqli_query($conn, "SELECT DISTINCT corrida FROM catalogo");
                                         while($extraido= mysqli_fetch_array($result)){
@@ -173,7 +230,7 @@
                                         ?>
                                     </select>
 
-                                    <p class="precio"><span>$</span></p>
+                                    <p class="precio"><span id="precio" name="precio">$</span></p>
                                 </div>
 
                             </div>
