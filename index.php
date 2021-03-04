@@ -230,7 +230,11 @@
                                         ?>
                                     </select>
 
+<<<<<<< Updated upstream
                                     <p class="precio"><span id="precio" name="precio">$</span></p>
+=======
+                                    <p class="precio"><span>$<?php ?></span></p>
+>>>>>>> Stashed changes
                                 </div>
 
                             </div>
@@ -249,6 +253,10 @@
         </div>
 
     </div> <!--.site formulario-->
+
+
+                                        
+
 
     <?php include_once 'includes/templates/footer.php';?>
 

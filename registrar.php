@@ -64,7 +64,7 @@
     <?php include_once 'includes/templates/footer.php';?>
   
 
-    <!-- <script src="js/js/registrar.js" type="module"></script> -->
+    <script src="js/js/registrar.js" type="module"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     

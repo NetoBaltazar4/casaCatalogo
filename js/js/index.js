@@ -87,7 +87,7 @@
 
 
 
-        //////Vaidar que ambos campos tengan infomacion
+        //////Validar que ambos campos tengan infomacion
         if(marcaInput   === '' || modeloInput === ''){
             
             imprimirMensaje('Obligatorio llenar los campos de Marca y Modelo', 'error');
@@ -131,6 +131,8 @@
        imprimirDatos(extraerDatos);       
 
     }
+
+    
 
     ///Resetar el formulario 
     
