@@ -8,7 +8,7 @@
 
        $extraido= mysqli_fetch_array($consulta);
        if(empty($extraido)){
-
+         echo "MAL";
        } else{
         echo "".$extraido['precio'];
        }
