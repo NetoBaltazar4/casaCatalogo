@@ -4,7 +4,7 @@
     const btnEnviar = document.querySelector('#btnEnviar');
     const formulario = document.querySelector('#formulario-index');
     const listaTalla = document.querySelector('#lista-talla');
-    const Labelprecio = document.querySelector('.precio');
+    const Labelprecio = document.querySelector('#precio2');
   //  const precioSpan = document.querySelector('.precio span span');
 
     /////Validacion de la marca  y el modelo
@@ -211,7 +211,8 @@
 function resetearFormulario(){
     
     formulario.reset();
-    listaTalla.innerHTML = ``;
+    var variable = document.querySelector('#lista-talla');
+    variable.disabled = true;
     span.innerHTML = ``;
 
 }
