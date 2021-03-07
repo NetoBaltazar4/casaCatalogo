@@ -211,6 +211,7 @@
 function resetearFormulario(){
     
     formulario.reset();
+    listaTalla.innerHTML = ``;
     var variable = document.querySelector('#lista-talla');
     variable.disabled = true;
     span.innerHTML = ``;
