@@ -161,17 +161,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                  <label for="talla" class="talla">Selecciona la talla</label>
-                                    <select name="lista-talla" id="lista-talla">
-                                    <option disabled selected  value="2">Selecciona el rango</option>
-                                        <?php include ("includes/funciones/conexion.php");
-                                        $result = mysqli_query($conn, "SELECT DISTINCT corrida FROM catalogo");
-                                        while($extraido= mysqli_fetch_array($result)){
-                                        ?>
-                                        <option value="<?php echo "".$extraido['corrida'] ?>" name = "tallaRes" ><?php echo "".$extraido['corrida'] ?></option>
-                                        <?php
-                                        }
-                                        ?>
-
+                                    <select  id="lista-talla" name ="lista-talla">      
                                     </select>
 
                                     <p class="precio"><span id="precio" name="precio">$
