@@ -43,5 +43,27 @@
         echo json_encode($extraido);
       }
     }
+  }else  if(isset($_POST['email'])){
+
+    $sql = mysqli_query($conn,'SELECT email_user FROM registro_cuenta');
+            while($consu = $sql->fetch_assoc()){
+                // $datos = json_encode($consu);
+                $extraido = $consu['email_user'];
+            }
+
+
+            var_dump($extraido);
+    // $resp = $conn->query($sql);
+    // while($e = $resp->fetch_assoc()){
+    //   echo $e['email_user'];
+    // var_dump($guardarEmail);
+
+      
+     
+    // }
+
+
   }
+
+  
 ?>
