@@ -329,19 +329,18 @@ h4{
 }
 
 .contacto .campo-contacto .password-registrar,
-.contacto .campo-contacto .password-confirmar{
+.contacto .campo-contacto .password-confirmar,
+.contacto .campo-contacto .password-login{
     width: 80%;
 }
 
 /*Mostrar contrasenia*/
-.contacto .campo-contacto .mostrar-password{
+.contacto .campo-contacto .mostrar-password,
+.contacto .campo-contacto .mostrar-confirmar-password,
+.contacto .campo-contacto .mostrar-password-login{
     cursor: pointer;
 }
 /*Mostrar confirmat contrarsenia*/
-.contacto .campo-contacto .mostrar-confirmar-password{
-    cursor: pointer;
-}
-
 
 
 .contacto .campo-textArea{
