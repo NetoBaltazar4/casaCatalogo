@@ -31,15 +31,8 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
     }
     function validarCampos(e){
          e.preventDefault();
-        
-        const email = document.querySelector('#email').value;
-        const password = document.querySelector('#password').value;
-
-        const datos = {
-            email,
-            password
-        }
-
+         const email = document.querySelector('#email').value;
+         const password = document.querySelector('#password').value;
 
         let regexEmail =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.;:,]).{8,20}$/;
@@ -56,7 +49,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
             return;
         }
 
-         consultarDatos(datos);
+         consultarDatos();
 
         /////consultar si existe el correo dado de alta en la base de datos
         //// si el correo existe entonces entrar a la parte de usuario
@@ -66,28 +59,65 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
     }
 
-  async  function consultarDatos({email,password}){
+  async  function consultarDatos(){
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
 
-    const data = new FormData();
-    data.append('email', ''+email);
-    data.append('password', ''+password);
+    const data1 = new FormData();
+    data1.append('email', ''+email);
+    data1.append('password', ''+password);
+    data1.append('passANDemail', 'passANDemail');
+
 
         const url = 'includes/funciones/datos.php';
 
         try{
          const res = await  fetch(url,{
                 method: 'POST',
-                body: data
+                body: data1
             })
          const respuesta = await res.json();
          console.log(respuesta);
 
         }catch(e){
-            console.error(e);
+            imprimirMensaje('Datos incorectos. O sino tienes cuenta crea una', 'error');
 
         }
        
 
+    }
+
+
+    function  imprimirMensaje(mensaje, tipo){
+
+        const divMensaje = document.createElement('div');
+        const activo = document.querySelector('.activo');
+    
+        if(!activo){
+    
+            if(tipo === 'error'){
+    
+                divMensaje.textContent = mensaje;
+                divMensaje.classList.add('alert', 'alert-danger', 'activo', 'text-center');
+    
+           
+            }else{
+    
+                divMensaje.textContent = mensaje;
+                divMensaje.classList.add('alert', 'alert-primary', 'text-center');
+    
+            }
+    
+    
+            formulario.appendChild(divMensaje);
+    
+            setTimeout(()=>{
+    
+                divMensaje.remove();
+    
+            }, 5000);
+        }
+    
     }
      
 })();
