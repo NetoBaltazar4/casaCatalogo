@@ -30,9 +30,14 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
     }
     function validarCampos(e){
-         e.preventDefault();
+           e.preventDefault();
          const email = document.querySelector('#email').value;
          const password = document.querySelector('#password').value;
+
+         const datos = {
+             email,
+             password
+         }
 
         let regexEmail =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.;:,]).{8,20}$/;
@@ -49,7 +54,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
             return;
         }
 
-         consultarDatos();
+         consultarDatos(datos);
 
         /////consultar si existe el correo dado de alta en la base de datos
         //// si el correo existe entonces entrar a la parte de usuario
@@ -59,65 +64,32 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
     }
 
-  async  function consultarDatos(){
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
+  async  function consultarDatos({email,password}){
+   
+    
+     const data = new FormData();
+     data.append('email',''+email);
+     data.append('password',''+ password);
+     data.append('passANDemail', 'passANDemail');
 
-    const data1 = new FormData();
-    data1.append('email', ''+email);
-    data1.append('password', ''+password);
-    data1.append('passANDemail', 'passANDemail');
-
-
-        const url = 'includes/funciones/datos.php';
+     const url = 'includes/funciones/datos.php';
 
         try{
          const res = await  fetch(url,{
                 method: 'POST',
-                body: data1
+                body: data
             })
-         const respuesta = await res.json();
-         console.log(respuesta);
+         const resp = await res.json();
+         console.log(resp);
+         /////Cambiar la interfaz del usuario para que pueda hacer la compra
 
         }catch(e){
-            imprimirMensaje('Datos incorectos. O sino tienes cuenta crea una', 'error');
+          //  console.log(e);
+           mostrarMensaje('Datos incorectos. O sino tienes cuenta crea una', 'error')
 
         }
        
 
-    }
-
-
-    function  imprimirMensaje(mensaje, tipo){
-
-        const divMensaje = document.createElement('div');
-        const activo = document.querySelector('.activo');
-    
-        if(!activo){
-    
-            if(tipo === 'error'){
-    
-                divMensaje.textContent = mensaje;
-                divMensaje.classList.add('alert', 'alert-danger', 'activo', 'text-center');
-    
-           
-            }else{
-    
-                divMensaje.textContent = mensaje;
-                divMensaje.classList.add('alert', 'alert-primary', 'text-center');
-    
-            }
-    
-    
-            formulario.appendChild(divMensaje);
-    
-            setTimeout(()=>{
-    
-                divMensaje.remove();
-    
-            }, 5000);
-        }
-    
     }
      
 })();

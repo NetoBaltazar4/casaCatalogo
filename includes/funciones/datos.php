@@ -44,15 +44,12 @@
       }
     }
   } else if(isset($_POST['passANDemail'])){
-    $buscaTalla=$_POST['passANDemail'];
-    $var2='passANDemail';
 
-    if(strcmp($buscaTalla, $var2) === 0){
+   
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-
-    $consulta = mysqli_query($conn,"SELECT  nombre_user FROM registro_cuenta WHERE email_user = '$email' AND password_user = '$password'");
+    $consulta = mysqli_query($conn,"SELECT email_user,password_user FROM registro_cuenta WHERE email_user = '$email' AND password_user = '$password'");
 
     $extraido= mysqli_fetch_array($consulta);
     if(empty($extraido)){
@@ -61,6 +58,29 @@
     } else{
       echo json_encode($extraido);
     }
-  }
+   
+  }else if(isset($_POST['obtenerEmail'])){
+ 
+    $buscaTalla=$_POST['obtenerEmail'];
+    $var2='obtenerEmail';
+
+
+    if(strcmp($buscaTalla, $var2) === 0){
+
+    $email = $_POST['email'];
+
+    $consulta = mysqli_query($conn,"SELECT email_user FROM registro_cuenta WHERE email_user = '$email'");
+
+    $extraido= mysqli_fetch_array($consulta);
+    if(empty($extraido)){
+      echo "MAL";
+      //print_r ($extraido);
+    } else{
+      echo json_encode($extraido);
+    }
+
+    }
+    
+
   }
 ?>

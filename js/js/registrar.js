@@ -11,7 +11,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
      const btnRegistrar = document.querySelector('#btn-registrar');
      const mostrarPassword = document.querySelector('#mostrar-password');
      const confirmarMostrarPassword = document.querySelector('#mostrar-confirmar-password');
-
+     const formulario = document.querySelector('#formulario');
      
 
      document.addEventListener('DOMContentLoaded', ()=>{
@@ -25,10 +25,42 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js'
           passwordInputConfir.addEventListener('blur', confirmarPassword);
           mostrarPassword.addEventListener('click', verPassword);
           confirmarMostrarPassword.addEventListener('click', verConfirmarPassword);
+          formulario.addEventListener('submit',  comprobarCorreo);
 
           btnRegistrar.disabled = true;
      });
 
+     async function comprobarCorreo(e){
+     //     e.preventDefault();
+
+          const email = document.querySelector('#email-registrar').value;
+
+          const data = new FormData();
+          data.append('email',''+email);
+          data.append('obtenerEmail', 'obtenerEmail');
+          
+          const url = 'includes/funciones/datos.php';
+
+          try {
+          const res = await  fetch(url,{
+               method: 'POST',
+               body: data
+          })
+          const correo = await res.json();
+
+          const {email_user} = correo;
+
+          if(email_user){
+               mostrarMensaje('El correo ya existe, favor de ingresar otro correo', 'error');
+               e.preventDefault();
+               return;
+          }
+
+          } catch (error) {
+               // console.log(error);
+          }
+
+     }
 
      function verPassword(){
 
