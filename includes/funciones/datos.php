@@ -53,8 +53,9 @@
 
     $extraido= mysqli_fetch_array($consulta);
     if(empty($extraido)){
-      echo "MAL";
-      //print_r ($extraido);
+      $dato = "next";
+      echo json_encode($dato);
+      
     } else{
       echo json_encode($extraido);
     }
@@ -73,7 +74,9 @@
 
     $extraido= mysqli_fetch_array($consulta);
     if(empty($extraido)){
-      echo "MAL";
+      $dato = "next";
+      echo json_encode($dato);
+    //  echo "MAL";
       //print_r ($extraido);
     } else{
       echo json_encode($extraido);
