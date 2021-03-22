@@ -14,7 +14,7 @@ selectMarca.addEventListener('change', (event) => {
         imprimirMensaje('Ahora ingresa el modelo', 'error');
      } else {
         lista.disabled = false;
-        imprimirDatos()
+        imprimirDatos();
      }
     
 });
@@ -63,7 +63,7 @@ function  imprimirMensaje(mensaje, tipo){
 
 }
 
- function  imprimirDatos(){
+function  imprimirDatos(){
 
     var marca = document.querySelector("#marcasel").value;
     var modelo = document.querySelector("#modelo").value;
@@ -81,22 +81,16 @@ function  imprimirMensaje(mensaje, tipo){
         body: data1
     }).then(res => res.json())
     .then(lista_de_categorias => {
-       
-      const {corrida} = lista_de_categorias;
-      
-      document.querySelector("#lista-talla").innerHTML += `<option value="${corrida}">${corrida}</option>`;
 
-
-    //   for (n in lista_de_categorias) {
-    //     if (typeof lista_de_categorias[n] == 'object') {
-    //      display(lista_de_categorias[n],n+".");
-    //     }else{
-    //       if(n == "corrida"){
-    //         document.querySelector("#lista-talla").innerHTML += "<option value='"+lista_de_categorias[n]+"'>"+lista_de_categorias[n]+"</option>";
-    //         cargaprecio(); 
-    //       }
-    //     }
-    //    }
+      for (n in lista_de_categorias) {
+        if (typeof lista_de_categorias[n] == 'Object') {
+         display(lista_de_categorias[n],n+".");
+        }else{
+            console.log("aqui");
+            document.querySelector("#lista-talla").innerHTML += "<option value='"+lista_de_categorias[n]+"'>"+lista_de_categorias[n]+"</option>";
+            cargaprecio(); 
+        }
+       }
     })
     .catch(function(error) {
         imprimirMensaje('Revisa que esten ingresado correctamente los datos', 'error');

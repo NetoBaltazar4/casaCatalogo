@@ -40,54 +40,15 @@
     function  validarFormulario(e){
         // e.preventDefault();
  
-        const marcaInput = document.querySelector('#marca').value;
+        const marcaInput = document.querySelector('#marcasel').value;
         const modeloInput = document.querySelector('#modelo').value;
         marca = marcaInput;
         modelo =  Number(modeloInput);
 
 
-        /////Marca hacer una lista de los catalogos, quitar el color,
-
-        const catalogo = [
-            {
-                marca: 'DEB',
-                modelo: 9658,
-                talla: 'G',
-                precio: 200,
-                color: 'amarillo'
-            },
-            {
-                marca: 'AND',
-                modelo: 5045,
-                talla: 'M',
-                precio: 300,
-                color: 'azul'
-                
-            },
-            {
-                
-                marca: 'AND',
-                modelo: 5045,
-                talla: 'Ch',
-                precio: 300,                    
-                color: 'azul'
-          
-            },
-            {
-                marca: 'AND',
-                modelo: 5048,
-                talla: 'L',
-                precio: 300,
-                color: 'rojo'
-                
-            }
-    
-        ]
 
 
-
-
-        //////Validar que ambos campos tengan infomacion
+        //////Vaidar que ambos campos tengan infomacion
         if(marcaInput   === '' || modeloInput === ''){
             
             imprimirMensaje('Obligatorio llenar los campos de Marca y Modelo', 'error');
@@ -105,8 +66,7 @@
         //     imprimirMensaje('Datos incorrectos... Ingresa la marca y el modelo correctamente', 'error');
         // }
 
-        consultarDatos(catalogo);
-
+        imprimirDatos(); 
 
         /////En  caso de exito hablilir los campos seleccionar talla, precio y color
 
@@ -116,52 +76,20 @@
        
     }
 
-    ////funcion de buscar los datos
-    function consultarDatos(catalogo){
-
-       // extraccion de datos marca y modelo
-       const extraerDatos = catalogo.filter(cata => cata.marca === marca && cata.modelo === modelo)
-
-       if(extraerDatos.length === 0){
-           imprimirMensaje('Revisa que este ingresado correctamente el modelo', 'error');
-           return;
-       }
-
-       ////Acontinuacion sigue imprimir los datos en el DOM
-       imprimirDatos(extraerDatos);       
-
-    }
-
-    
-
     ///Resetar el formulario 
     
 
     ////funcion de imprimir los datos en el DOMM
-     function  imprimirDatos(datos){
+     function  imprimirDatos(){
 
        limparHtml();
        
    
         habilitarDesabilitar(false);
 
-       
-        datos.forEach((dato)=>{
 
-            const {talla,precio} = dato;
-            const opcTalla = document.createElement('option');
-            opcTalla.value = talla;
-            opcTalla.textContent = talla;
+            resetearFormulario();
 
-            span.textContent = precio;
-
-          
-            listaTalla.appendChild(opcTalla);
-            ////Verificar en caso de que existan mas productos con el mismo modelo pero diferente talla, precio
-           /// listaColor.appendChild(opcColor);
-            Labelprecio.appendChild(span);
-
-        });
 
      }
 
@@ -173,52 +101,14 @@
      }
 
 
-    /////Funcion multi-opcional
-    function  imprimirMensaje(mensaje, tipo){
-
-        const divMensaje = document.createElement('div');
-        const activo = document.querySelector('.activo');
-
-        if(!activo){
-
-            if(tipo === 'error'){
-
-                divMensaje.textContent = mensaje;
-                divMensaje.classList.add('alert', 'alert-danger', 'activo', 'text-center');
-
-           
-            }else{
-
-                divMensaje.textContent = mensaje;
-                divMensaje.classList.add('alert', 'alert-primary', 'text-center');
-
-            }
-
-
-            formulario.appendChild(divMensaje);
-
-            setTimeout(()=>{
-
-                divMensaje.remove();
-                resetearFormulario();
-
-            }, 5000);
-        }
-
-    }
-
-
 function resetearFormulario(){
     
     formulario.reset();
+    Labelprecio.innerHTML = ``;
     listaTalla.innerHTML = ``;
     var variable = document.querySelector('#lista-talla');
     variable.disabled = true;
     span.innerHTML = ``;
-
 }
-
-
-    
 
 })();
