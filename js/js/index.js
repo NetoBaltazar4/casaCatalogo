@@ -38,7 +38,7 @@
     }
 
     function  validarFormulario(e){
-        e.preventDefault();
+        // e.preventDefault();
  
         const marcaInput = document.querySelector('#marca').value;
         const modeloInput = document.querySelector('#modelo').value;
