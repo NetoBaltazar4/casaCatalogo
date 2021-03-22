@@ -135,7 +135,7 @@
                <div class="contenido-formulario">
                     <h2 class="centrar-texto">llena el formulario para realizar tu pedido</h2>
                    <div class="style-campo">
-                    <form  id="formulario-index" action="includes/funciones/validaciones.php" method="post">
+                    <form  id="formulario-index" action="includes/funciones/datos.php" method="post">
                         <div class="campos">
                             <div class="row">
                                 <div class="col-md-12">
