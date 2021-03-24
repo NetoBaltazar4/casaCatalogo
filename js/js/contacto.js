@@ -7,6 +7,12 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
     const phoneContacto = document.querySelector('#phone-contacto');
     const mensaje = document.querySelector('#mensaje');
     const btnEnviar = document.querySelector('#btnEnviar');
+    var nombre = false;
+    var apellido = false;
+    var email = false;
+    var telefono = false;
+    var texto = false;
+
 
 
 
@@ -34,13 +40,13 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
     }
 
     function validarCampo(e){
+         
 
      const campo = e.target.value;
      const type = e.target.type;
 
      ////Validar Campos de texto
      if(type === 'text'){
-
           camposText(e);
      }
 
@@ -72,20 +78,28 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
     
           if(name === 'nombre'){
-          
-               if(!regexTexto.test(campo)){
+
+          var tamNombre = document.querySelector('#nombre-contacto').value;
+               if(!regexTexto.test(campo) || tamNombre.length > 30){
+                    nombre = false;
                     mostrarMensaje('Ingresa tu nombre correcto','error');
                     return;
+               } else{
+                    nombre = true;
                }
 
           }
 
           if(name === 'apellido'){
           
-               if(!regexTexto.test(campo)){
+               var tamApellido = document.querySelector('#apellido-contacto').value;
+               if(!regexTexto.test(campo) || tamApellido.length > 30){
+                    apellido = false;
                     mostrarMensaje('Ingresa tu Apellido correcto','error');
                     return;
 
+               } else{
+                    apellido = true;
                }
           }
          
@@ -97,23 +111,29 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
 
      if(!regexEmail.test(campo) || campo === ''){
+          email = false;
           mostrarMensaje('Ingresar un correo valido', 'error');
           return;
+     } else{
+          email = true;
      }
 
 
     }
 
     function validarTextArea(campo){
+     var mensajevalor = document.querySelector('#mensaje').value;
 
-         if(campo === ''){
-
-          mostrarMensaje('Favor de ingresar un mensaje aclarando su situacion..','error');
+         if(mensajevalor === ''){
+              texto = false;
+          mostrarMensaje('No olbide de ingresar un mensaje aclarando su situacion..','error');
 
            return;
-         }
+         } else{
+          texto = true;
+     }
        
-
+     activaBoton();
     }
 
     function campoTel(campo){
@@ -121,10 +141,27 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
     let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
     if(!regexPhone.test(campo)){
+         telefono = false;
       mostrarMensaje('Error. Ingresa un numero de telefono / celular valido...','error');
          return;
+    } else{
+     telefono = true;
     }
 
+    }
+
+    function activaBoton(){
+     /*console.log("nombre: "+nombre);
+     console.log("apellido: "+apellido);
+     console.log("email: "+email);
+     console.log("telefono: "+telefono);
+     console.log("texto: "+texto);*/
+        if(nombre && apellido && email && telefono && texto){
+             console.log("siiiii");
+             btnEnviar.disabled = false;
+        } else{
+          btnEnviar.disabled = true; 
+        }
     }
 
    
