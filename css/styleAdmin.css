@@ -1,0 +1,230 @@
+/*GLobales*/
+html{
+     box-sizing: border-box;
+     min-height: 100%;
+     font-size: 62.5%;
+ }
+ 
+ *,
+ *::before,
+ *::after{
+     box-sizing: inherit;
+ }
+ 
+ body{
+     font-family: 'Krub', sans-serif;
+     min-height: 100%;
+     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+ 
+ }
+ 
+ img{
+     max-width: 100%;
+ }
+ 
+ h1{
+     font-size: 3.8rem;
+ }
+ 
+ h2{
+     font-size: 3.6rem;
+ }
+ 
+ h3{
+     font-size: 3.4rem;
+ }
+ 
+ h4{
+     font-size: 3.2rem;
+ }
+ 
+ ul{
+     list-style: none;
+ }
+ 
+ /*Utilidades*/
+ .contenedor{
+     width: 95%;
+     max-width: 120rem;
+     margin: 0 auto;
+ }
+ 
+ .centrar-texto{
+     text-align: center;
+ }
+ 
+ /*Admin Index*/
+ .site-header{
+    background-color: #098171;  /*COLOR DE FONFO EN HEADER  098171*/
+
+     padding: 2rem;
+    
+ }
+ 
+ .site-header i{
+     font-size: 2rem;
+     color: #fff;
+ }
+ 
+ 
+ /*Barra Admin*/
+ .barra-admin{
+     background-color: #fff;
+     padding: 1.5rem;
+     margin-bottom: 2rem;
+ }
+ .navegacion-admin{
+     /* display: flex;
+     justify-content: space-between; */
+ }
+ .barra-admin .navegacion-admin a{
+     color: #000;
+     font-size: 2rem;
+     text-decoration: none;
+ }
+/*Contenido*/
+.site-contenido .menu i{
+     color: #098171;
+     font-size: 5rem;
+     margin-bottom: 3rem;
+
+}
+
+ /*Menu de opciones Admin*/
+ .menu{
+     margin: 4rem;
+     padding: 4rem;
+ }
+ .menu a{
+     text-decoration: none;
+ }
+ .menu img:hover{
+     transform: scale(1.1);
+ }
+ .menu p{
+     font-size: 2rem;
+     text-transform: uppercase;
+     color: #000;
+     font-weight: bold;
+ }
+ /*Menu de notificaciones*/
+ 
+ .submenu-mensaje,
+ .submenu-nofiti{
+     position: relative;
+ }
+ .submenu-mensaje .mensaje,
+ .submenu-nofiti .notificaion{
+     display: none;
+ }
+ 
+ .submenu-mensaje:hover .mensaje,
+ .submenu-nofiti:hover .notificaion{
+     display: block;
+     position: absolute;
+     right: 0;
+ 
+     top: 100%;
+     z-index: 1;
+     background-color: #fff;
+     padding: 2rem;
+     min-height: 40rem;
+     min-width: 30rem;
+ }
+ .submenu-mensaje .mensaje p,
+ .submenu-nofiti .notificaion p{
+     font-size: 1.5rem;
+     font-weight: bold;
+     color:red;
+     text-transform: uppercase;
+     text-align: left;
+ }
+ .submenu-mensaje i,
+ .submenu-nofiti i{
+     cursor: pointer;
+ 
+ }
+ .submenu-mensaje thead th{
+     font-size: 2.2rem;
+     text-align: left;
+     border-bottom: 2px solid #e1e1e1;
+ }
+ /*Submenu de notificacion*/
+ .submenu-nofiti thead th{
+     font-size: 1.5rem;
+     text-align: left;
+     border-bottom: 2px solid #e1e1e1;
+ }
+ .submenu-mensaje tbody td{
+     font-size: 1.8rem;
+     text-align: center;
+     border-bottom: 2px solid #e1e1e1;
+ }
+ .submenu-nofiti tbody td{
+     font-size: 1.8rem;
+     text-align: center;
+     border-bottom: 2px solid #e1e1e1;
+ }
+ 
+ .submenu-mensaje .borrar-mensaje,
+ .submenu-nofiti .borrar-mensaje{
+     color: red;
+     font-weight: bold;
+     text-decoration: none;
+ }
+ /*Footer*/
+ .site-footer{
+     background-color: #202020;
+     padding: 2.5rem;
+ }
+ .site-footer .contenido-footer{
+    color: #fff; 
+    text-align: center;
+    font-size: 2.5rem;
+ }
+ 
+ /*Pagina gestionar productos*/
+ .site-producto a{
+     text-decoration: none;
+ }
+ .site-producto a:hover img{
+      transform: scale(1.1);
+ }
+ .site-producto p{
+     font-size: 2.5rem;
+     text-transform: uppercase;
+     color: #000;
+     font-weight: bold;
+ }
+ 
+ /*Administarador user*/
+ .submenu-admin{
+     position: relative;
+ }
+ 
+ .submenu-admin .cuenta-admin{
+     display: none;
+ }
+ 
+ .submenu-admin:hover .cuenta-admin{
+     display: block;
+     position: absolute;
+     right: 0;
+ 
+     top: 100%;
+     z-index: 1;
+     background-color: #fff;
+     padding: 2rem;
+     min-height: 40rem;
+     min-width: 30rem;
+ }
+ .submenu-admin .cuenta-admin p{
+     font-size: 3rem;
+     text-align: center;
+     font-weight: bold;
+     border-bottom: 2px solid #c1c1c1;
+ }
+ .submenu-admin .lista-admin th{
+     font-size: 2rem;
+ 
+ }
