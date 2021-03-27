@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3307
--- Tiempo de generación: 10-02-2021 a las 20:37:46
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 7.3.26
+-- Host: 127.0.0.1
+-- Generation Time: Mar 27, 2021 at 10:11 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `catalogo`
+-- Database: `catalogo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `carrito`
+-- Table structure for table `carrito`
 --
 
 CREATE TABLE `carrito` (
@@ -39,7 +39,7 @@ CREATE TABLE `carrito` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `catalogo`
+-- Table structure for table `catalogo`
 --
 
 CREATE TABLE `catalogo` (
@@ -51,7 +51,7 @@ CREATE TABLE `catalogo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `catalogo`
+-- Dumping data for table `catalogo`
 --
 
 INSERT INTO `catalogo` (`id_catalogo`, `modelo`, `marca`, `precio`, `corrida`) VALUES
@@ -65,7 +65,7 @@ INSERT INTO `catalogo` (`id_catalogo`, `modelo`, `marca`, `precio`, `corrida`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -79,19 +79,20 @@ CREATE TABLE `cliente` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compra`
+-- Table structure for table `compra`
 --
 
 CREATE TABLE `compra` (
   `id_compra` int(11) NOT NULL,
   `id_catalogo_compra` int(11) NOT NULL,
-  `id_cliente_compra` varchar(11) NOT NULL
+  `id_cliente_compra` varchar(11) NOT NULL,
+  `id_venta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle compra`
+-- Table structure for table `detalle_compra`
 --
 
 CREATE TABLE `detalle_compra` (
@@ -106,7 +107,7 @@ CREATE TABLE `detalle_compra` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `domicilio`
+-- Table structure for table `domicilio`
 --
 
 CREATE TABLE `domicilio` (
@@ -126,20 +127,20 @@ CREATE TABLE `domicilio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `envio`
+-- Table structure for table `envio`
 --
 
 CREATE TABLE `envio` (
   `id_envio` int(11) NOT NULL,
-  `id_compra_envio` int(11) NOT NULL,
-  `fecha_inicio_envio` date NOT NULL,
-  `fecha_fin_envio` date NOT NULL
+  `id_venta` int(11) NOT NULL,
+  `fechaInicioEnvio` varchar(30) NOT NULL,
+  `fechaFinEnvio` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pago`
+-- Table structure for table `pago`
 --
 
 CREATE TABLE `pago` (
@@ -152,7 +153,7 @@ CREATE TABLE `pago` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `registro cuenta`
+-- Table structure for table `registro_cuenta`
 --
 
 CREATE TABLE `registro_cuenta` (
@@ -165,14 +166,17 @@ CREATE TABLE `registro_cuenta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `registro cuenta`
+-- Dumping data for table `registro_cuenta`
 --
 
+INSERT INTO `registro_cuenta` (`id_cuenta`, `nombre_user`, `ap_user`, `am_user`, `email_user`, `password_user`) VALUES
+(5678, 'Miguel', 'Jacobo', 'Jacobo', 'migjacobo73@gmail.com', 'Migue123.'),
+(5679, 'Miguel', 'Jacobo', 'Jacobo', 'migjacobo73@gmail.com', 'Migue123.');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tarjeta`
+-- Table structure for table `tarjeta`
 --
 
 CREATE TABLE `tarjeta` (
@@ -191,76 +195,76 @@ CREATE TABLE `tarjeta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `venta`
+-- Table structure for table `venta`
 --
 
 CREATE TABLE `venta` (
   `id_venta` int(11) NOT NULL,
-  `id_producto_venta` int(11) NOT NULL,
-  `marca_venta` varchar(30) NOT NULL,
-  `numero_venta` int(11) NOT NULL,
-  `modelo_venta` varchar(30) NOT NULL,
+  `precioVenta` int(11) NOT NULL,
+  `tallaVenta` float NOT NULL,
+  `marcaVenta` varchar(30) NOT NULL,
+  `numeroVenta` int(11) NOT NULL,
+  `modeloVenta` int(30) NOT NULL,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
-  `anio` int(11) NOT NULL,
-  `talla_venta` float NOT NULL,
-  `precio_venta` float NOT NULL
+  `anio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `carrito`
+-- Indexes for table `carrito`
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id_bolsa`),
   ADD KEY `fk_carrito_catalogo` (`id_catalogo_carrito`);
 
 --
--- Indices de la tabla `catalogo`
+-- Indexes for table `catalogo`
 --
 ALTER TABLE `catalogo`
   ADD PRIMARY KEY (`id_catalogo`);
 
 --
--- Indices de la tabla `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`),
   ADD KEY `fk_cliente_registroCuenta` (`id_cliente_cuenta`);
 
 --
--- Indices de la tabla `compra`
+-- Indexes for table `compra`
 --
 ALTER TABLE `compra`
   ADD PRIMARY KEY (`id_compra`),
   ADD KEY `fk_compra_catalogo` (`id_catalogo_compra`),
-  ADD KEY `fk_compra_cliente` (`id_cliente_compra`);
+  ADD KEY `fk_compra_cliente` (`id_cliente_compra`),
+  ADD KEY `fk_relacion` (`id_venta`);
 
 --
--- Indices de la tabla `detalle compra`
+-- Indexes for table `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
   ADD PRIMARY KEY (`id_detalle_compra`);
 
 --
--- Indices de la tabla `domicilio`
+-- Indexes for table `domicilio`
 --
 ALTER TABLE `domicilio`
   ADD PRIMARY KEY (`id_domicilio`),
   ADD KEY `fk_domicilio_cliente` (`id_cliente_domicilio`);
 
 --
--- Indices de la tabla `envio`
+-- Indexes for table `envio`
 --
 ALTER TABLE `envio`
   ADD PRIMARY KEY (`id_envio`),
-  ADD KEY `fk_envio_compra` (`id_compra_envio`);
+  ADD KEY `fk_venta` (`id_venta`);
 
 --
--- Indices de la tabla `pago`
+-- Indexes for table `pago`
 --
 ALTER TABLE `pago`
   ADD PRIMARY KEY (`id_pago`),
@@ -268,136 +272,130 @@ ALTER TABLE `pago`
   ADD KEY `fk_pago_compra` (`id_compra_pago`);
 
 --
--- Indices de la tabla `registro cuenta`
+-- Indexes for table `registro_cuenta`
 --
 ALTER TABLE `registro_cuenta`
   ADD PRIMARY KEY (`id_cuenta`);
 
 --
--- Indices de la tabla `tarjeta`
+-- Indexes for table `tarjeta`
 --
 ALTER TABLE `tarjeta`
   ADD PRIMARY KEY (`id_tarjeta`),
   ADD KEY `fk_tarjeta_clienta` (`id_cliente_tarjeta`);
 
 --
--- Indices de la tabla `venta`
+-- Indexes for table `venta`
 --
 ALTER TABLE `venta`
-  ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `fk_venta_catalogo` (`id_producto_venta`);
+  ADD PRIMARY KEY (`id_venta`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `carrito`
+-- AUTO_INCREMENT for table `carrito`
 --
 ALTER TABLE `carrito`
   MODIFY `id_bolsa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `compra`
+-- AUTO_INCREMENT for table `compra`
 --
 ALTER TABLE `compra`
   MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `detalle compra`
+-- AUTO_INCREMENT for table `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
   MODIFY `id_detalle_compra` int(100) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `domicilio`
+-- AUTO_INCREMENT for table `domicilio`
 --
 ALTER TABLE `domicilio`
   MODIFY `id_domicilio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `envio`
+-- AUTO_INCREMENT for table `envio`
 --
 ALTER TABLE `envio`
   MODIFY `id_envio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pago`
+-- AUTO_INCREMENT for table `pago`
 --
 ALTER TABLE `pago`
   MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `registro cuenta`
+-- AUTO_INCREMENT for table `registro_cuenta`
 --
 ALTER TABLE `registro_cuenta`
-  MODIFY `id_cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5679;
+  MODIFY `id_cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5680;
 
 --
--- AUTO_INCREMENT de la tabla `tarjeta`
+-- AUTO_INCREMENT for table `tarjeta`
 --
 ALTER TABLE `tarjeta`
   MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `venta`
+-- AUTO_INCREMENT for table `venta`
 --
 ALTER TABLE `venta`
   MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `carrito`
+-- Constraints for table `carrito`
 --
 ALTER TABLE `carrito`
   ADD CONSTRAINT `fk_carrito_catalogo` FOREIGN KEY (`id_catalogo_carrito`) REFERENCES `catalogo` (`id_catalogo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `cliente`
+-- Constraints for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD CONSTRAINT `fk_cliente_registroCuenta` FOREIGN KEY (`id_cliente_cuenta`) REFERENCES `registro_cuenta` (`id_cuenta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `compra`
+-- Constraints for table `compra`
 --
 ALTER TABLE `compra`
   ADD CONSTRAINT `fk_compra_catalogo` FOREIGN KEY (`id_catalogo_compra`) REFERENCES `catalogo` (`id_catalogo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_compra_cliente` FOREIGN KEY (`id_cliente_compra`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_compra_cliente` FOREIGN KEY (`id_cliente_compra`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_relacion` FOREIGN KEY (`id_venta`) REFERENCES `venta` (`id_venta`);
 
 --
--- Filtros para la tabla `domicilio`
+-- Constraints for table `domicilio`
 --
 ALTER TABLE `domicilio`
   ADD CONSTRAINT `fk_domicilio_cliente` FOREIGN KEY (`id_cliente_domicilio`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `envio`
+-- Constraints for table `envio`
 --
 ALTER TABLE `envio`
-  ADD CONSTRAINT `fk_envio_compra` FOREIGN KEY (`id_compra_envio`) REFERENCES `compra` (`id_compra`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_venta` FOREIGN KEY (`id_venta`) REFERENCES `venta` (`id_venta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `pago`
+-- Constraints for table `pago`
 --
 ALTER TABLE `pago`
   ADD CONSTRAINT `fk_pago_compra` FOREIGN KEY (`id_compra_pago`) REFERENCES `compra` (`id_compra`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pago_detalleCompra` FOREIGN KEY (`id_detalle_compra_pago`) REFERENCES `detalle_compra` (`id_detalle_compra`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `tarjeta`
+-- Constraints for table `tarjeta`
 --
 ALTER TABLE `tarjeta`
   ADD CONSTRAINT `fk_tarjeta_clienta` FOREIGN KEY (`id_cliente_tarjeta`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD CONSTRAINT `fk_venta_catalogo` FOREIGN KEY (`id_producto_venta`) REFERENCES `catalogo` (`id_catalogo`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
