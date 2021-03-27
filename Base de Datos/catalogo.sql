@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2021 at 10:11 PM
+-- Generation Time: Mar 27, 2021 at 10:18 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -207,7 +207,8 @@ CREATE TABLE `venta` (
   `modeloVenta` int(30) NOT NULL,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
-  `anio` int(11) NOT NULL
+  `anio` int(11) NOT NULL,
+  `visto` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
