@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2021 at 10:18 PM
+-- Generation Time: Mar 28, 2021 at 04:01 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -69,12 +69,19 @@ INSERT INTO `catalogo` (`id_catalogo`, `modelo`, `marca`, `precio`, `corrida`) V
 --
 
 CREATE TABLE `cliente` (
-  `id_cliente` varchar(11) NOT NULL,
-  `id_cliente_cuenta` int(11) NOT NULL,
-  `nombre_cliente` varchar(30) NOT NULL,
-  `ap_cliente` varchar(30) NOT NULL,
-  `am_cliente` varchar(30) NOT NULL
+  `id_cliente` int(11) NOT NULL,
+  `id_cuenta` int(11) NOT NULL,
+  `nombreCliente` varchar(30) NOT NULL,
+  `apCliente` varchar(30) NOT NULL,
+  `amCliente` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `id_cuenta`, `nombreCliente`, `apCliente`, `amCliente`) VALUES
+(1, 5678, 'Miguel', 'Jacobo', 'Jacob');
 
 -- --------------------------------------------------------
 
@@ -85,9 +92,16 @@ CREATE TABLE `cliente` (
 CREATE TABLE `compra` (
   `id_compra` int(11) NOT NULL,
   `id_catalogo_compra` int(11) NOT NULL,
-  `id_cliente_compra` varchar(11) NOT NULL,
+  `id_cliente_compra` int(11) NOT NULL,
   `id_venta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `compra`
+--
+
+INSERT INTO `compra` (`id_compra`, `id_catalogo_compra`, `id_cliente_compra`, `id_venta`) VALUES
+(1, 14585478, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -112,7 +126,7 @@ CREATE TABLE `detalle_compra` (
 
 CREATE TABLE `domicilio` (
   `id_domicilio` int(11) NOT NULL,
-  `id_cliente_domicilio` varchar(11) NOT NULL,
+  `id_cliente_domicilio` int(11) NOT NULL,
   `nom_dom` varchar(30) NOT NULL,
   `ap_dom` varchar(30) NOT NULL,
   `am_dom` varchar(30) NOT NULL,
@@ -171,7 +185,8 @@ CREATE TABLE `registro_cuenta` (
 
 INSERT INTO `registro_cuenta` (`id_cuenta`, `nombre_user`, `ap_user`, `am_user`, `email_user`, `password_user`) VALUES
 (5678, 'Miguel', 'Jacobo', 'Jacobo', 'migjacobo73@gmail.com', 'Migue123.'),
-(5679, 'Miguel', 'Jacobo', 'Jacobo', 'migjacobo73@gmail.com', 'Migue123.');
+(5679, 'Miguel', 'Jacobo', 'Jacobo', 'migjacobo73@gmail.com', 'Migue123.'),
+(5680, 'miguel', 'jacobo', 'jacobo', 'migjacobo73@gmail.com', 'Migue123.');
 
 -- --------------------------------------------------------
 
@@ -181,6 +196,7 @@ INSERT INTO `registro_cuenta` (`id_cuenta`, `nombre_user`, `ap_user`, `am_user`,
 
 CREATE TABLE `tarjeta` (
   `id_tarjeta` int(11) NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
   `tipo_tarjeta` varchar(15) NOT NULL,
   `num_tarjeta` int(20) NOT NULL,
   `nombre_tar` varchar(30) NOT NULL,
@@ -188,8 +204,7 @@ CREATE TABLE `tarjeta` (
   `am_tar` varchar(30) NOT NULL,
   `mm` int(2) NOT NULL,
   `aa` int(4) NOT NULL,
-  `codigo_tarjeta` int(20) NOT NULL,
-  `id_cliente_tarjeta` varchar(11) NOT NULL
+  `codigo_tarjeta` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -200,16 +215,23 @@ CREATE TABLE `tarjeta` (
 
 CREATE TABLE `venta` (
   `id_venta` int(11) NOT NULL,
-  `precioVenta` int(11) NOT NULL,
-  `tallaVenta` float NOT NULL,
+  `precioVenta` float NOT NULL,
+  `tallaVenta` varchar(30) NOT NULL,
   `marcaVenta` varchar(30) NOT NULL,
   `numeroVenta` int(11) NOT NULL,
-  `modeloVenta` int(30) NOT NULL,
+  `modeloVenta` varchar(30) NOT NULL,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
   `anio` int(11) NOT NULL,
   `visto` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `venta`
+--
+
+INSERT INTO `venta` (`id_venta`, `precioVenta`, `tallaVenta`, `marcaVenta`, `numeroVenta`, `modeloVenta`, `dia`, `mes`, `anio`, `visto`) VALUES
+(1, 477, '23 - 26.5', 'CASTALIA', 1, '584-94', 27, 4, 2021, 1);
 
 --
 -- Indexes for dumped tables
@@ -233,7 +255,7 @@ ALTER TABLE `catalogo`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`),
-  ADD KEY `fk_cliente_registroCuenta` (`id_cliente_cuenta`);
+  ADD KEY `fk_cuenta` (`id_cuenta`);
 
 --
 -- Indexes for table `compra`
@@ -242,7 +264,7 @@ ALTER TABLE `compra`
   ADD PRIMARY KEY (`id_compra`),
   ADD KEY `fk_compra_catalogo` (`id_catalogo_compra`),
   ADD KEY `fk_compra_cliente` (`id_cliente_compra`),
-  ADD KEY `fk_relacion` (`id_venta`);
+  ADD KEY `fk_compra_venta` (`id_venta`);
 
 --
 -- Indexes for table `detalle_compra`
@@ -283,7 +305,7 @@ ALTER TABLE `registro_cuenta`
 --
 ALTER TABLE `tarjeta`
   ADD PRIMARY KEY (`id_tarjeta`),
-  ADD KEY `fk_tarjeta_clienta` (`id_cliente_tarjeta`);
+  ADD KEY `fk_tarjeta_cliente` (`id_cliente`);
 
 --
 -- Indexes for table `venta`
@@ -302,10 +324,16 @@ ALTER TABLE `carrito`
   MODIFY `id_bolsa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `detalle_compra`
@@ -335,7 +363,7 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT for table `registro_cuenta`
 --
 ALTER TABLE `registro_cuenta`
-  MODIFY `id_cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5680;
+  MODIFY `id_cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5681;
 
 --
 -- AUTO_INCREMENT for table `tarjeta`
@@ -347,7 +375,7 @@ ALTER TABLE `tarjeta`
 -- AUTO_INCREMENT for table `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -363,7 +391,7 @@ ALTER TABLE `carrito`
 -- Constraints for table `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `fk_cliente_registroCuenta` FOREIGN KEY (`id_cliente_cuenta`) REFERENCES `registro_cuenta` (`id_cuenta`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_cuenta` FOREIGN KEY (`id_cuenta`) REFERENCES `registro_cuenta` (`id_cuenta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `compra`
@@ -371,7 +399,7 @@ ALTER TABLE `cliente`
 ALTER TABLE `compra`
   ADD CONSTRAINT `fk_compra_catalogo` FOREIGN KEY (`id_catalogo_compra`) REFERENCES `catalogo` (`id_catalogo`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_compra_cliente` FOREIGN KEY (`id_cliente_compra`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_relacion` FOREIGN KEY (`id_venta`) REFERENCES `venta` (`id_venta`);
+  ADD CONSTRAINT `fk_compra_venta` FOREIGN KEY (`id_venta`) REFERENCES `venta` (`id_venta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `domicilio`
@@ -396,7 +424,7 @@ ALTER TABLE `pago`
 -- Constraints for table `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  ADD CONSTRAINT `fk_tarjeta_clienta` FOREIGN KEY (`id_cliente_tarjeta`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_tarjeta_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
