@@ -41,5 +41,6 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/js/headerAdmin.js"></script>
 </body>
 </html>
