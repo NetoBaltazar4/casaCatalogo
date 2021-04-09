@@ -1,7 +1,7 @@
 <?php 
   include("conexion.php");
-   
-       if (isset($_POST['opcionPrecio'])) {
+
+    if (isset($_POST['opcionPrecio'])) {
 
       $opcionPrecio=$_POST['opcionPrecio'];
       $var1='opcionPrecio';
@@ -96,24 +96,26 @@
       }
      
     }
-  }  else if(isset($_POST['passANDemail'])){
+  } else if(isset($_POST['passANDemail'])){
+    $buscaTalla=$_POST['passANDemail'];
+    $var2='passANDemail';
 
-   
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    if(strcmp($buscaTalla, $var2) === 0){
 
-    $consulta = mysqli_query($conn,"SELECT email_user,password_user FROM registro_cuenta WHERE email_user = '$email' AND password_user = '$password'");
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+
+    $consulta = mysqli_query($conn,"SELECT  nombre_user FROM registro_cuenta WHERE email_user = '$email' AND password_user = '$password'");
 
     $extraido= mysqli_fetch_array($consulta);
     if(empty($extraido)){
-      $dato = "next";
-      echo json_encode($dato);
-      
+      echo "MAL";
+      //print_r ($extraido);
     } else{
       echo json_encode($extraido);
     }
-   
-  }else if(isset($_POST['obtenerEmail'])){
+  }
+  } else if(isset($_POST['obtenerEmail'])){
  
     $buscaTalla=$_POST['obtenerEmail'];
     $var2='obtenerEmail';
@@ -138,5 +140,58 @@
     }
     
 
+  } else if (isset($_POST['ventaMenu'])) {
+
+    $opcionPrecio=$_POST['ventaMenu'];
+    $var1='ventaMenu';
+
+  if(strcmp($opcionPrecio, $var1) === 0){
+
+    $consulta = mysqli_query($conn,"SELECT t2.nombreCliente,t3.modeloVenta,t3.dia,t3.mes,t3.anio,t3.id_venta FROM compra AS t1 INNER JOIN cliente AS t2 ON t1.id_cliente_compra = t2.id_cliente INNER JOIN venta AS t3 ON t1.id_venta = t3.id_venta AND t3.visto = 1;");
+   
+    if(empty($consulta)){
+      $dato = "next";
+      echo json_encode($dato);
+    } else{
+      while($row = mysqli_fetch_array($consulta)) 
+      { 
+          $nombreCliente=$row['nombreCliente'];
+          $modeloVenta=$row['modeloVenta'];
+          $dia=$row['dia'];
+          $mes=$row['mes'];
+          $anio=$row['anio'];
+          $idventa=$row['id_venta'];
+          
+      
+          $clientes[] = array('nombreCliente'=> $nombreCliente, 'modeloVenta'=> $modeloVenta, 'dia'=> $dia, 'mes'=> $mes,
+                              'anio'=> $anio, 'idventa'=> $idventa);
+      
+      }
+
+      if(empty($clientes)){
+        $dato = "next";
+      echo json_encode($dato);
+      } else {
+        $json_string = json_encode($clientes);
+      echo $json_string;
+      }
+      
+          
+    }
+  }
+     
+  } else if (isset($_POST['ventaMenuActualiza'])) {
+
+    $opcionPrecio=$_POST['ventaMenuActualiza'];
+    $var1='ventaMenuActualiza';
+
+  if(strcmp($opcionPrecio, $var1) === 0){
+
+    $id=intval($_POST['id']);
+
+    $consulta = mysqli_query($conn,"UPDATE venta SET visto = 0 WHERE id_venta = $id;");
+   
+  }
+     
   }
 ?>
