@@ -44,7 +44,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <img src="img/hombre/tenis/t1/Foto 18-05-20 18 55 06.jpg" alt="imagen del producto">
+                                                IMG
                                                 </td>
                                                 <td>F25652P</td>
                                                 <td>Puma</td>
@@ -85,17 +85,8 @@
                                                 </tr>
             
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <img src="img/hombre/tenis/t1/Foto 18-05-20 18 55 06.jpg" alt="imagen del producto">
-                                                    </td>
-                                                    <td>BATE964</td>
-                                                    <td>FASCRES</td>
-                                                    <td>jueves 25 agosto 16:00</td>
-                                                    <td><a href="#" class="borrar-mensaje"> X</a> </td>
-        
-                                                </tr>
+                                            <tbody id="agregarNotificacion" name="agregarNotificacion">
+
                                             </tbody>
         
                                         </table>
