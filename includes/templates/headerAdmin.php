@@ -96,6 +96,9 @@
                                                     <td><a href="#" class="borrar-mensaje"> X</a> </td>
         
                                                 </tr>
+
+
+                                              
                                             </tbody>
         
                                         </table>
