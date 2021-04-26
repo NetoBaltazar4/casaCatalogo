@@ -44,7 +44,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <img src="img/hombre/tenis/t1/Foto 18-05-20 18 55 06.jpg" alt="imagen del producto">
+                                                IMG
                                                 </td>
                                                 <td>F25652P</td>
                                                 <td>Puma</td>
