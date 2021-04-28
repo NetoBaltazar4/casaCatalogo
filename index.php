@@ -1,4 +1,4 @@
-    <?php include_once 'includes/templates/header.php'; ?>
+<?php include_once 'includes/templates/header.php';?>
 
   <!--  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

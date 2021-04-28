@@ -30,7 +30,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
     }
     function validarCampos(e){
-           e.preventDefault();
+        e.preventDefault();
          const email = document.querySelector('#email').value;
          const password = document.querySelector('#password').value;
 
@@ -43,19 +43,18 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
         let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.;:,]).{8,20}$/;
         if(!regexEmail.test(email) || !email === ''){
             mostrarMensaje('Error!.... Verificar que el email este correcto','error');
-            e.preventDefault();
             return;
             
         }
 
         if(!regexPassword.test(password) || !password === ''){
             mostrarMensaje('Error!..... Ingrese la contraseña de nuevo','error');
-            e.preventDefault();
+           
             return;
         }
 
          consultarDatos(datos);
-
+       
         /////consultar si existe el correo dado de alta en la base de datos
         //// si el correo existe entonces entrar a la parte de usuario
         ///  en caso que no exista mandar mensaje de crear cuenta 
@@ -66,7 +65,7 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
 
   async  function consultarDatos({email,password}){
    
-    
+    console.log('hola');
      const data = new FormData();
      data.append('email',''+email);
      data.append('password',''+ password);
@@ -80,12 +79,22 @@ import {mostrarMensaje} from '../funciones/mostrarMensaje.js';
                 body: data
             })
          const resp = await res.json();
-         console.log(resp);
          /////Cambiar la interfaz del usuario para que pueda hacer la compra
+         
+
+         if(resp === 'next'){
+            
+             mostrarMensaje('Datos incorrectos, sino tienes una cuenta crear una', 'error');
+             
+         }
+
+         ///Datos sean correctos vamos a enviar las peticiones al servidor con fech
+
+         
 
         }catch(e){
           //  console.log(e);
-           mostrarMensaje('Datos incorectos. O sino tienes cuenta crea una', 'error')
+        //    mostrarMensaje('Datos incorectos. O sino tienes cuenta crea una', 'error')
 
         }
        

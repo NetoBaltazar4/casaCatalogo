@@ -130,6 +130,17 @@ html{
      padding: 2rem;
      min-height: 40rem;
      min-width: 30rem;
+     height: 50rem;
+ }
+
+ .icono-mensaje{
+    margin-top: 3rem;
+}
+ @media (min-width: 768px) {
+    .icono-mensaje{
+        margin-top: 0;
+    }
+     
  }
  .submenu-mensaje .mensaje p,
  .submenu-nofiti .notificaion p{
@@ -217,6 +228,8 @@ html{
      padding: 2rem;
      min-height: 40rem;
      min-width: 30rem;
+
+     max-height: 50rem;
  }
  .submenu-admin .cuenta-admin p{
      font-size: 3rem;

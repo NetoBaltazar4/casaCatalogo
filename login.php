@@ -1,5 +1,4 @@
 
-
     <?php  include_once 'includes/templates/header.php';?>
 
     <section class="contenedor">
@@ -8,7 +7,7 @@
                 <img src="img/La casa del catalogo2.0.png" alt="logo" width="20%">
             </div>
             <div class="contacto">
-                <form action="includes/funciones/datos.php" id="formulario" method="post">
+                <form  id="formulario" method="post">
                     <div class="row justify-content-center">
                         <div class="campo-contacto col-md-12">
                             <i class="fas fa-at"></i>

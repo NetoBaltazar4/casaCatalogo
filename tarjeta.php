@@ -1,5 +1,6 @@
 
-    <?php include_once 'includes/templates/headerUser.php';?>
+   
+    <?php include_once 'includes/templates/headerAdmin.php';?>
 
     <!-- Tipo de header que se colocara en esta seccion  -->
 
