@@ -6,6 +6,7 @@
             <div class="imagen-logo">
                 <img src="img/La casa del catalogo2.0.png" alt="logo" width="20%">
             </div>
+            
             <div class="contacto">
                 <form  id="formulario" method="post">
                     <div class="row justify-content-center">
@@ -20,22 +21,20 @@
                         </div>
                     </div>
                        
-    
-                    <div class="row justify-content-center">
-                        <div class="boton-login">
+                    <div class="row centrar-texto">
+                        <div class="boton-login ">
                             <button type="submit" id="btn-login" class="btn btn-dark" name="submit">Login</button>
                         </div>
                     </div>
                       
-                        <div class="seccion-info">
+                    <div class="seccion-info">
                             <div class="cuenta">
                                 <p>No tienes cuenta? <span> <a href="registrar.php">Crear Cuenta</a></span> </p>
                             </div>
                             <div class="recuperar-password">
                                 <p>Ovidaste tu contraseña? <span> <a href="#">Recuperar contraseña</a> </span> </p>
-    
                             </div>
-                        </div>
+                    </div>
                       
                  <!-- Codigo php -->
                 </form>

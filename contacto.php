@@ -28,17 +28,15 @@
 
                     </div>
     
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="icono-mensaje">
-                                    <i class="fas fa-envelope"></i>
-                                    <textarea placeholder="Mensaje" id="mensaje"></textarea>
-                                </div>
-                            </div>
+                        <div class=" d-flex align-items-center icono-mensaje">
+                            <i class="fas fa-envelope me-3"></i>
+                            <textarea placeholder="Mensaje" id="mensaje"></textarea>
                         </div>
                       
-                        <div class="row justify-content-center">
-                            <button type="submit" id="btnEnviar" class="btn btn-dark">Enviar</button>
+                        <div class="row centrar-texto">
+                            <div class="col-md-12">
+                                <button type="submit" id="btnEnviar" class="btn btn-dark">Enviar</button>
+                            </div>
                         </div>
                         
                 </form>

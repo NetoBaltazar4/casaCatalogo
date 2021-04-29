@@ -66,7 +66,7 @@
     </header>
 
 
-    <div class="navbar navbar-expand-md   barra">
+    <div class="navbar navbar-expand-md barra">
         <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
             <div class="contenedor">
                 <nav class="nav row  centrar-texto">
